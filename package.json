@@ -1,6 +1,6 @@
 {
   "name": "form-action-bar",
-  "version": "1.0.4",
+  "version": "1.0.1",
   "license": "LICENSE.md",
   "description": "An action bar container for forms.",
   "devDependencies": {
