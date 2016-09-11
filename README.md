@@ -1,4 +1,3 @@
-# `<form-action-bar>`
 
 The `<form-action-bar>` renders an action buttons and status information in the bottom of the form.
 
@@ -28,3 +27,4 @@ Custom property | Description | Default
 `--form-action-bar-background` | Background color of the bar | `#fff`
 `--form-action-bar-height` | Bar height | `64px`
 `--form-action-bar-content` | Mixin applied to the main container (excluding prefixes) | `{}`
+
