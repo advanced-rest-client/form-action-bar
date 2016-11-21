@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/advanced-rest-client/form-action-bar.svg?branch=master)](https://travis-ci.org/advanced-rest-client/form-action-bar)  [![Dependency Status](https://dependencyci.com/github/advanced-rest-client/form-action-bar/badge)](https://dependencyci.com/github/advanced-rest-client/form-action-bar)  
+
+# form-action-bar
 
 The `<form-action-bar>` renders an action buttons and status information in the bottom of the form.
 
