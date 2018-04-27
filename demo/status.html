@@ -1,52 +1,50 @@
 <!doctype html>
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
   <title>form-action-bar demo</title>
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+  <link rel="import" href="../../shadycss/apply-shim.html">
+  <link rel="import" href="../../polymer/lib/elements/custom-style.html">
+  <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../../paper-button/paper-button.html">
+  <link rel="import" href="../../paper-input/paper-input.html">
   <link rel="import" href="../form-action-bar.html">
-  <style is="custom-style" include="demo-pages-shared-styles">
+  <custom-style>
+    <style is="custom-style" include="demo-pages-shared-styles">
     #status {
       color: var(--paper-green-700);
     }
-  </style>
+    </style>
+  </custom-style>
 </head>
-
 <body unresolved>
-  <h1>Showing status message</h1>
-  <p>The bar renders itself at the bottom of the page. Check validation to see the status.</p>
-  <paper-button raised onclick="validate()">Check validation</paper-button>
-
-  <demo-snippet>
-    <template>
-      <form-action-bar elevation="5">
-        <div id="status" prefix hidden>Form status OK</div>
-        <paper-button>cancel</paper-button>
-        <paper-button>save</paper-button>
-      </form-action-bar>
+  <dom-bind id="demo">
+    <template is="dom-bind">
+      <div class="vertical-section-container centered" role="main">
+        <h1>Showing status message</h1>
+        <p>The bar renders itself at the bottom of the page. Check validation to see the status.</p>
+        <paper-button raised on-click="validate">Check validation</paper-button>
+        <paper-input label="Elevation" value="{{elv}}" type="number" step="1" min="0" max="8"></paper-input>
+        <form-action-bar elevation="[[elv]]">
+          <div id="status" slot="prefix" hidden>Form status OK</div>
+          <paper-button>cancel</paper-button>
+          <paper-button>save</paper-button>
+        </form-action-bar>
+      </div>
     </template>
-  </demo-snippet>
-
+  </dom-bind>
   <script>
-    function validate() {
-      document.getElementById('status').removeAttribute('hidden');
-    }
+    (function(app) {
+      app.validate = function() {
+        document.getElementById('status').removeAttribute('hidden');
+      };
+      app.elv = 2;
+    })(document.getElementById('demo'));
   </script>
 </body>
-
 </html>
