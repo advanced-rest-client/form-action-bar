@@ -1,33 +1,26 @@
-[![Build Status](https://travis-ci.org/advanced-rest-client/form-action-bar.svg?branch=master)](https://travis-ci.org/advanced-rest-client/form-action-bar)  [![Dependency Status](https://dependencyci.com/github/advanced-rest-client/form-action-bar/badge)](https://dependencyci.com/github/advanced-rest-client/form-action-bar)  
+[![Build Status](https://travis-ci.org/advanced-rest-client/api-url-data-model.svg?branch=stage)](https://travis-ci.org/advanced-rest-client/form-action-bar)
+
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/advanced-rest-client/form-action-bar)
 
 # form-action-bar
 
-The `<form-action-bar>` renders an action buttons and status information in the bottom of the form.
+An action bar container for forms.
 
-    <form is="iron-form">
-      <form-action-bar>
-        <div id="status" prefix>Form status OK</div>
-        <paper-button>cancel</paper-button>
-        <paper-button>save</paper-button>
-      </form-action-bar>
-    </form>
+<!---
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="form-action-bar.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 
-Children will be rendered on the right-hand side.
-If child element contains a `prefix` attribute it will be rendered on the left side.
+```html
+<form-action-bar></form-action-bar>
+```
 
-### Parent container padding
-Parent container should have  bottom padding at least the same as the `--form-action-bar-height` CSS variable value.
-By default it is 64 pixels. The bar reders itself in fixed position so everything behind it is not visible.
+### API components
 
-### Elevation
-Use the `elevation` attribute (in range 0-5) to set z-deepth of the bar were 0 is no elevation at all and 5 is to highest elevation. Default elevation is 1.
-
-### Styling
-`<form-action-bar>` provides the following custom properties and mixins for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--form-action-bar-background` | Background color of the bar | `#fff`
-`--form-action-bar-height` | Bar height | `64px`
-`--form-action-bar-content` | Mixin applied to the main container (excluding prefixes) | `{}`
-
+This components is a part of API components ecosystem: https://elements.advancedrestclient.com/
