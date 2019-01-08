@@ -74,9 +74,9 @@ the License.
     }
     </style>
     <div class="content">
-      <slot></stot>
+      <slot></slot>
     </div>
-    <slot name="prefix"></stot>
+    <slot name="prefix"></slot>
   </template>
   <script>
   /**
@@ -126,7 +126,9 @@ the License.
    * @memberof UiElements
    */
   class FormActionBar extends Polymer.Element {
-    static get is() { return 'form-action-bar'; }
+    static get is() {
+      return 'form-action-bar';
+    }
     static get properties() {
       return {
         /**
