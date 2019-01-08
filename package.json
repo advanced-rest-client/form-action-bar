@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "description": "An action bar container for forms.",
   "devDependencies": {
-    "@polymer/gen-typescript-declarations": "^1.1.1"
+    "@polymer/gen-typescript-declarations": "^1.6.0"
   },
   "scripts": {
     "lint": "polymer lint form-action-bar.html",
