@@ -5,14 +5,15 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   form-action-bar.html
+ *   form-action-bar.js
  */
 
 
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
 
-/// <reference path="../polymer/types/polymer-element.d.ts" />
-/// <reference path="../paper-styles/shadow.d.ts" />
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 
 declare namespace UiElements {
 
@@ -55,7 +56,7 @@ declare namespace UiElements {
    * `--form-action-bar-height` | Bar height | `64px`
    * `--form-action-bar-content` | Mixin applied to the main container (excluding prefixes) | `{}`
    */
-  class FormActionBar extends Polymer.Element {
+  class FormActionBar extends PolymerElement {
 
     /**
      * The z-depth of this element, from 0-8. Setting to 0 will remove the
@@ -66,6 +67,9 @@ declare namespace UiElements {
   }
 }
 
-interface HTMLElementTagNameMap {
-  "form-action-bar": UiElements.FormActionBar;
+declare global {
+
+  interface HTMLElementTagNameMap {
+    "form-action-bar": UiElements.FormActionBar;
+  }
 }
