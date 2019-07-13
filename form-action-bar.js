@@ -1,6 +1,6 @@
 /**
 @license
-Copyright 2018 Pawel Psztyc, The ARC team
+Copyright 2019 Pawel Psztyc, The ARC team
 Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy of
 the License at
@@ -11,8 +11,70 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import {PolymerElement} from '../../@polymer/polymer/polymer-element.js';
-import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
+const tpl = document.createElement('template');
+tpl.innerHTML = `<style>
+:host {
+  background-color: var(--form-action-bar-background, #fff);
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 100%;
+  height: var(--form-action-bar-height, 64px);
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  box-shadow: none;
+  transition: var(--box-shadow-transition);
+}
+
+:host ::slotted(*) {
+  margin-left: 12px;
+}
+
+:host([elevation="1"]) {
+  box-shadow: var(--box-shadow-2dp);
+}
+
+:host([elevation="2"]) {
+  box-shadow: var(--box-shadow-3dp);
+}
+
+:host([elevation="3"]) {
+  box-shadow: var(--box-shadow-4dp);
+}
+
+:host([elevation="4"]) {
+  box-shadow: var(--box-shadow-6dp);
+}
+
+:host([elevation="5"]) {
+  box-shadow: var(--box-shadow-8dp);
+}
+
+:host([elevation="6"]) {
+  box-shadow: var(--box-shadow-12dp);
+}
+
+:host([elevation="7"]) {
+  box-shadow: var(--box-shadow-16dp);
+}
+
+:host([elevation="8"]) {
+  box-shadow: var(--box-shadow-24dp);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-basis: 0.000000001px;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+</style>
+<div class="content">
+  <slot></slot>
+</div>
+<slot name="prefix"></slot>`;
 /**
  * The `<form-action-bar>` renders an action buttons and status information in the bottom of the form.
  *
@@ -59,103 +121,37 @@ import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
  * @demo demo/status.html Action bar with status message
  * @memberof UiElements
  */
-class FormActionBar extends PolymerElement {
-  static get template() {
-    return html`<style>
-    :host {
-      background-color: var(--form-action-bar-background, #fff);
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-      width: 100%;
-      height: var(--form-action-bar-height, 64px);
-      position: fixed;
-      bottom: 0px;
-      left: 0;
-      box-shadow: none;
-      transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+class FormActionBar extends HTMLElement {
+  get elevation() {
+    const current = this.getAttribute('elevation');
+    if (!current) {
+      return;
     }
-
-    :host ::slotted(*) {
-      margin-left: 12px;
+    return Number(current);
+  }
+  /**
+   * @param {Number} value The z-depth of this element, from 0-8.
+   * Setting to 0 removes the shadow, and each increasing number greater than
+   * 0 is "deeper" than the last.
+   */
+  set elevation(value) {
+    if (isNaN(value)) {
+      return;
     }
-
-    :host([elevation="1"]) {
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-    }
-
-    :host([elevation="2"]) {
-      box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
-                  0 1px 8px 0 rgba(0, 0, 0, 0.12),
-                  0 3px 3px -2px rgba(0, 0, 0, 0.4);
-    }
-
-    :host([elevation="3"]) {
-      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-                  0 1px 10px 0 rgba(0, 0, 0, 0.12),
-                  0 2px 4px -1px rgba(0, 0, 0, 0.4);
-    }
-
-    :host([elevation="4"]) {
-      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
-                  0 1px 18px 0 rgba(0, 0, 0, 0.12),
-                  0 3px 5px -1px rgba(0, 0, 0, 0.4);
-    }
-
-    :host([elevation="5"]) {
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                  0 3px 14px 2px rgba(0, 0, 0, 0.12),
-                  0 5px 5px -3px rgba(0, 0, 0, 0.4);
-    }
-
-    :host([elevation="6"]) {
-      box-shadow: 0 12px 16px 1px rgba(0, 0, 0, 0.14),
-                  0 4px 22px 3px rgba(0, 0, 0, 0.12),
-                  0 6px 7px -4px rgba(0, 0, 0, 0.4);
-    }
-
-    :host([elevation="7"]) {
-      box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
-                  0  6px 30px 5px rgba(0, 0, 0, 0.12),
-                  0  8px 10px -5px rgba(0, 0, 0, 0.4);
-    }
-
-    :host([elevation="8"]) {
-      box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
-                  0 9px 46px 8px rgba(0, 0, 0, 0.12),
-                  0 11px 15px -7px rgba(0, 0, 0, 0.4);
-    }
-
-    .content {
-      display: flex;
-      flex: 1;
-      flex-basis: 0.000000001px;
-      justify-content: flex-end;
-      flex-direction: row;
-    }
-    </style>
-    <div class="content">
-      <slot></slot>
-    </div>
-    <slot name="prefix"></slot>
-`;
+    this.setAttribute('elevation', String(value));
   }
 
-  static get properties() {
-    return {
-      /**
-       * The z-depth of this element, from 0-8. Setting to 0 will remove the
-       * shadow, and each increasing number greater than 0 will be "deeper"
-       * than the last.
-       */
-      elevation: {
-        type: Number,
-        reflectToAttribute: true,
-        value: 1
-      }
-    };
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
+    const clone = tpl.content.cloneNode(true);
+    shadow.appendChild(clone);
+  }
+
+  connectedCallback() {
+    if (!this.hasAttribute('elevation')) {
+      this.elevation = 1;
+    }
   }
 }
 window.customElements.define('form-action-bar', FormActionBar);

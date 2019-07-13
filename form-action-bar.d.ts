@@ -10,6 +10,7 @@
 
 
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
+// tslint:disable:no-any describes the API as best we are able today
 
 declare namespace UiElements {
 
@@ -52,22 +53,12 @@ declare namespace UiElements {
    * `--form-action-bar-height` | Bar height | `64px`
    * `--form-action-bar-content` | Mixin applied to the main container (excluding prefixes) | `{}`
    */
-  class FormActionBar extends PolymerElement {
-
-    /**
-     * The z-depth of this element, from 0-8. Setting to 0 will remove the
-     * shadow, and each increasing number greater than 0 will be "deeper"
-     * than the last.
-     */
-    elevation: number|null|undefined;
+  class FormActionBar extends HTMLElement {
+    elevation: any;
+    connectedCallback(): void;
   }
 }
 
-declare global {
-
-  interface HTMLElementTagNameMap {
-    "form-action-bar": UiElements.FormActionBar;
-  }
+interface HTMLElementTagNameMap {
+  "form-action-bar": UiElements.FormActionBar;
 }
-
-export {};
