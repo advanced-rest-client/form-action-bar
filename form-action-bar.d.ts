@@ -5,14 +5,12 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   form-action-bar.html
+ *   form-action-bar.js
  */
 
 
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
-
-/// <reference path="../polymer/types/polymer-element.d.ts" />
-/// <reference path="../paper-styles/shadow.d.ts" />
+// tslint:disable:no-any describes the API as best we are able today
 
 declare namespace UiElements {
 
@@ -55,14 +53,9 @@ declare namespace UiElements {
    * `--form-action-bar-height` | Bar height | `64px`
    * `--form-action-bar-content` | Mixin applied to the main container (excluding prefixes) | `{}`
    */
-  class FormActionBar extends Polymer.Element {
-
-    /**
-     * The z-depth of this element, from 0-8. Setting to 0 will remove the
-     * shadow, and each increasing number greater than 0 will be "deeper"
-     * than the last.
-     */
-    elevation: number|null|undefined;
+  class FormActionBar extends HTMLElement {
+    elevation: any;
+    connectedCallback(): void;
   }
 }
 
