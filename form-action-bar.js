@@ -125,7 +125,7 @@ class FormActionBar extends HTMLElement {
   get elevation() {
     const current = this.getAttribute('elevation');
     if (!current) {
-      return;
+      return null;
     }
     return Number(current);
   }
