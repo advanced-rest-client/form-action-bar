@@ -1,5 +1,4 @@
 import { fixture, assert } from '@open-wc/testing';
-import { a11ySuite } from '@advanced-rest-client/a11y-suite/index.js';
 import '../form-action-bar.js';
 
 describe('<form-action-bar>', function() {
@@ -29,10 +28,10 @@ describe('<form-action-bar>', function() {
       assert.equal(element.getAttribute('elevation'), '1');
     });
 
-    it('elevation getter returns undefined when no elevation', async () => {
+    it('elevation getter returns null when no elevation', async () => {
       const element = await basicFixture();
       element.removeAttribute('elevation');
-      assert.isUndefined(element.elevation);
+      assert.equal(element.elevation, null);
     });
 
     it('elevation getter returns current value', async () => {
@@ -47,6 +46,14 @@ describe('<form-action-bar>', function() {
   });
 
   describe('a11y', () => {
-    a11ySuite('Normal state', '<form-action-bar></form-action-bar>');
+    it('is accessible in default state', async () => {
+      const element = await basicFixture();
+      assert.isAccessible(element);
+    });
+
+    it('is accessible with elevation', async () => {
+      const element = await elevationFixture();
+      assert.isAccessible(element);
+    });
   });
 });

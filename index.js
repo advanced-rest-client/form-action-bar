@@ -11,5 +11,4 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import { FormActionBar } from './src/FormActionBar.js';
-window.customElements.define('form-action-bar', FormActionBar);
+export { FormActionBar } from './src/FormActionBar.js';
